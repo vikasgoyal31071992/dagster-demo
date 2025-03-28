@@ -1,2 +1,0 @@
-pymongo
-dlt[snowflake]>=0.5.1
