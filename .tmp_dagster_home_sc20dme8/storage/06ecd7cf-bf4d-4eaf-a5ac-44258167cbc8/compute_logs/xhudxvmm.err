@@ -1,0 +1,5 @@
+[32m2025-03-28 15:41:01 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 06ecd7cf-bf4d-4eaf-a5ac-44258167cbc8 - 23439 - LOGS_CAPTURED - Started capturing logs in process (pid: 23439).
+[32m2025-03-28 15:41:01 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 06ecd7cf-bf4d-4eaf-a5ac-44258167cbc8 - 23439 - mongodb - STEP_START - Started execution of step "mongodb".
+[32m2025-03-28 15:41:07 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 06ecd7cf-bf4d-4eaf-a5ac-44258167cbc8 - 23439 - mongodb - STEP_OUTPUT - Yielded output "dlt_mongodb_sessions" of type "Nothing". (Type check passed).
+[32m2025-03-28 15:41:07 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 06ecd7cf-bf4d-4eaf-a5ac-44258167cbc8 - 23439 - mongodb - ASSET_MATERIALIZATION - Materialized value dlt_mongodb_sessions.
+[32m2025-03-28 15:41:07 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 06ecd7cf-bf4d-4eaf-a5ac-44258167cbc8 - 23439 - mongodb - STEP_SUCCESS - Finished execution of step "mongodb" in 6.57s.

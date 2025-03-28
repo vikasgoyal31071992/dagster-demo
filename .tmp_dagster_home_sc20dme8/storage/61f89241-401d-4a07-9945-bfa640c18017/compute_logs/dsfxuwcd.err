@@ -1,0 +1,33 @@
+[32m2025-03-28 16:20:36 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 61f89241-401d-4a07-9945-bfa640c18017 - 23909 - LOGS_CAPTURED - Started capturing logs in process (pid: 23909).
+[32m2025-03-28 16:20:36 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 61f89241-401d-4a07-9945-bfa640c18017 - 23909 - user_engagement - STEP_START - Started execution of step "user_engagement".
+[32m2025-03-28 16:20:36 +0530[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 61f89241-401d-4a07-9945-bfa640c18017 - 23909 - user_engagement - STEP_FAILURE - Execution of step "user_engagement" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "user_engagement"::
+
+snowflake.connector.errors.ProgrammingError: 002003 (42S02): SQL compilation error:
+Object 'COMMENTS' does not exist or not authorized.
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 480, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 127, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 115, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/dagster_demo/assets/movies.py", line 28, in user_engagement
+    cursor.execute(query)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/snowflake/connector/cursor.py", line 1104, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/snowflake/connector/errors.py", line 283, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/snowflake/connector/errors.py", line 338, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/snowflake/connector/errors.py", line 214, in default_errorhandler
+    raise error_class(
+[0m

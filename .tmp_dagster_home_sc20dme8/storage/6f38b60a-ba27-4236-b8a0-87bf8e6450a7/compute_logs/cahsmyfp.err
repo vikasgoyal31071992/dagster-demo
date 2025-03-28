@@ -1,0 +1,74 @@
+[32m2025-03-28 15:41:11 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6f38b60a-ba27-4236-b8a0-87bf8e6450a7 - 23473 - LOGS_CAPTURED - Started capturing logs in process (pid: 23473).
+[32m2025-03-28 15:41:11 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6f38b60a-ba27-4236-b8a0-87bf8e6450a7 - 23473 - mongodb - STEP_START - Started execution of step "mongodb".
+2025-03-28 15:41:11,914|[WARNING]|23473|8354908224|dlt|pipeline.py|run:721|The pipeline `run` method will now load the pending load packages. The data you passed to the run function will not be loaded. In order to do that you must run the pipeline again
+[32m2025-03-28 15:41:15 +0530[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 6f38b60a-ba27-4236-b8a0-87bf8e6450a7 - 23473 - mongodb - STEP_FAILURE - Execution of step "mongodb" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "mongodb"::
+
+dlt.pipeline.exceptions.PipelineStepFailed: Pipeline execution failed at stage load when processing package 1743156656.646516 with exception:
+
+<class 'FileNotFoundError'>
+[Errno 2] No such file or directory: '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/normalized/1743156656.646516/started_jobs/movies__writers.e1dbce5b6e.0.jsonl' -> '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/normalized/1743156656.646516/completed_jobs/movies__writers.e1dbce5b6e.0.jsonl'
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 480, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/dagster_demo/assets/mongodb.py", line 29, in dlt_asset_factory
+    yield from dlt.run(context=context, write_disposition="merge")
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster_dlt/dlt_event_iterator.py", line 77, in __next__
+    return next(self._inner_iterator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster_dlt/resource.py", line 286, in _run
+    load_info = dlt_pipeline.run(dlt_source, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 221, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 270, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 726, in run
+    return self.load(destination, dataset_name, credentials=credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 221, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 161, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 270, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 610, in load
+    raise PipelineStepFailed(
+
+The above exception was caused by the following exception:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/normalized/1743156656.646516/started_jobs/movies__writers.e1dbce5b6e.0.jsonl' -> '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/normalized/1743156656.646516/completed_jobs/movies__writers.e1dbce5b6e.0.jsonl'
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 603, in load
+    runner.run_pool(load_step.config, load_step)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/runners/pool_runner.py", line 91, in run_pool
+    while _run_func():
+          ^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/runners/pool_runner.py", line 84, in _run_func
+    run_metrics = run_f.run(cast(TExecutor, pool))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/load/load.py", line 638, in run
+    self.load_single_package(load_id, schema)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/load/load.py", line 571, in load_single_package
+    running_jobs, finalized_jobs, new_pending_exception = self.complete_jobs(
+                                                          ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/load/load.py", line 458, in complete_jobs
+    self.load_storage.normalized_packages.complete_job(load_id, job.file_name())
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/storages/load_package.py", line 458, in complete_job
+    return self._move_job(
+           ^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/storages/load_package.py", line 704, in _move_job
+    self.storage.atomic_rename(
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/storages/file_storage.py", line 185, in atomic_rename
+    os.rename(self.make_full_path(from_relative_path), self.make_full_path(to_relative_path))
+[0m

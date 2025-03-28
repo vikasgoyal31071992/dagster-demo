@@ -1,0 +1,97 @@
+[32m2025-03-28 15:41:06 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4a55678c-d493-489b-93a5-1f5709ed618f - 23456 - LOGS_CAPTURED - Started capturing logs in process (pid: 23456).
+[32m2025-03-28 15:41:06 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4a55678c-d493-489b-93a5-1f5709ed618f - 23456 - mongodb - STEP_START - Started execution of step "mongodb".
+[32m2025-03-28 15:41:07 +0530[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 4a55678c-d493-489b-93a5-1f5709ed618f - 23456 - mongodb - STEP_FAILURE - Execution of step "mongodb" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "mongodb"::
+
+dlt.pipeline.exceptions.PipelineStepFailed: Pipeline execution failed at stage normalize when processing package 1743156656.646516 with exception:
+
+<class 'dlt.normalize.exceptions.NormalizeJobFailed'>
+Job for movies.2c31fda34e.typed-jsonl failed terminally in load 1743156656.646516 with message [Errno 2] No such file or directory: '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/new/1743156656.646516/new_jobs/movies.9cd0e857a4.0.jsonl'.
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 480, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/dagster_demo/assets/mongodb.py", line 29, in dlt_asset_factory
+    yield from dlt.run(context=context, write_disposition="merge")
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster_dlt/dlt_event_iterator.py", line 77, in __next__
+    return next(self._inner_iterator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dagster_dlt/resource.py", line 286, in _run
+    load_info = dlt_pipeline.run(dlt_source, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 221, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 270, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 717, in run
+    self.normalize(loader_file_format=loader_file_format)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 221, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 175, in _wrap
+    rv = f(self, *args, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 270, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 552, in normalize
+    raise PipelineStepFailed(
+
+The above exception was caused by the following exception:
+dlt.normalize.exceptions.NormalizeJobFailed: Job for movies.2c31fda34e.typed-jsonl failed terminally in load 1743156656.646516 with message [Errno 2] No such file or directory: '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/new/1743156656.646516/new_jobs/movies.9cd0e857a4.0.jsonl'.
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/pipeline/pipeline.py", line 548, in normalize
+    runner.run_pool(normalize_step.config, normalize_step)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/runners/pool_runner.py", line 91, in run_pool
+    while _run_func():
+          ^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/runners/pool_runner.py", line 84, in _run_func
+    run_metrics = run_f.run(cast(TExecutor, pool))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/normalize.py", line 280, in run
+    self.spool_schema_files(load_id, schema, schema_files)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/normalize.py", line 234, in spool_schema_files
+    self.spool_files(load_id, schema.clone(update_normalizers=True), map_f, files)
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/normalize.py", line 166, in spool_files
+    schema_updates, writer_metrics = map_f(schema, load_id, files)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/normalize.py", line 147, in map_single
+    result = w_normalize_files(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/worker.py", line 249, in w_normalize_files
+    raise NormalizeJobFailed(load_id, job_id, str(exc), writer_metrics) from exc
+
+The above exception was caused by the following exception:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/vikasgoyal/.dlt/pipelines/local_mongo/load/new/1743156656.646516/new_jobs/movies.9cd0e857a4.0.jsonl'
+
+Stack Trace:
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/worker.py", line 243, in w_normalize_files
+    partial_updates = normalizer(extracted_items_file, root_table_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/items_normalizers.py", line 206, in __call__
+    partial_update = self._normalize_chunk(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/normalize/items_normalizers.py", line 185, in _normalize_chunk
+    self.item_storage.write_data_item(
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/storages/data_item_storage.py", line 45, in write_data_item
+    return writer.write_data_item(item, columns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/data_writers/buffered.py", line 112, in write_data_item
+    self._flush_items()
+  File "/Users/vikasgoyal/Documents/github/dagster-demo/.venv/lib/python3.11/site-packages/dlt/common/data_writers/buffered.py", line 243, in _flush_items
+    self._file = self.open(self._file_name, "wb")  # type: ignore
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/.pyenv/versions/3.11.6/lib/python3.11/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vikasgoyal/.pyenv/versions/3.11.6/lib/python3.11/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0m
