@@ -1,5 +1,0 @@
-[32m2025-03-28 15:40:20 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e2e05a3a-29bf-40b9-aada-1e8cd5714120 - 23365 - LOGS_CAPTURED - Started capturing logs in process (pid: 23365).
-[32m2025-03-28 15:40:20 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e2e05a3a-29bf-40b9-aada-1e8cd5714120 - 23365 - mongodb - STEP_START - Started execution of step "mongodb".
-[32m2025-03-28 15:40:35 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e2e05a3a-29bf-40b9-aada-1e8cd5714120 - 23365 - mongodb - STEP_OUTPUT - Yielded output "dlt_mongodb_comments" of type "Nothing". (Type check passed).
-[32m2025-03-28 15:40:35 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e2e05a3a-29bf-40b9-aada-1e8cd5714120 - 23365 - mongodb - ASSET_MATERIALIZATION - Materialized value dlt_mongodb_comments.
-[32m2025-03-28 15:40:35 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e2e05a3a-29bf-40b9-aada-1e8cd5714120 - 23365 - mongodb - STEP_SUCCESS - Finished execution of step "mongodb" in 15.02s.

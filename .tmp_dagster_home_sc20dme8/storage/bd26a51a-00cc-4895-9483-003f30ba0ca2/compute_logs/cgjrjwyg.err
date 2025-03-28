@@ -1,5 +1,0 @@
-[32m2025-03-28 15:40:50 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bd26a51a-00cc-4895-9483-003f30ba0ca2 - 23402 - LOGS_CAPTURED - Started capturing logs in process (pid: 23402).
-[32m2025-03-28 15:40:50 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bd26a51a-00cc-4895-9483-003f30ba0ca2 - 23402 - mongodb - STEP_START - Started execution of step "mongodb".
-[32m2025-03-28 15:43:23 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bd26a51a-00cc-4895-9483-003f30ba0ca2 - 23402 - mongodb - STEP_OUTPUT - Yielded output "dlt_mongodb_embedded_movies" of type "Nothing". (Type check passed).
-[32m2025-03-28 15:43:23 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bd26a51a-00cc-4895-9483-003f30ba0ca2 - 23402 - mongodb - ASSET_MATERIALIZATION - Materialized value dlt_mongodb_embedded_movies.
-[32m2025-03-28 15:43:23 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bd26a51a-00cc-4895-9483-003f30ba0ca2 - 23402 - mongodb - STEP_SUCCESS - Finished execution of step "mongodb" in 2m32s.
